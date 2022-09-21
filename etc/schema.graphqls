@@ -1,0 +1,13 @@
+type Mutation {
+    createPaymentIntent(input: CreateIntentInput!): PaymentIntent
+    @doc(description: "Create a payment intent manually")
+    @resolver(class: "Headless\\StripeGraphQl\\Model\\Resolver\\CreatePaymentIntent")
+}
+
+input CreateIntentInput {
+    cart_id: String
+}
+
+type PaymentIntent {
+    clientSecret: String
+}
