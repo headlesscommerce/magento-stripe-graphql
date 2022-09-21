@@ -15,11 +15,7 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.1",
         "stripe/module-payments": "^3.2"
-    },
-    "require-dev": {
-        "outeredge/dev-dependencies": "^3.0"
     },
     "autoload": {
         "files": [
@@ -27,11 +23,6 @@
         ],
         "psr-4": {
             "Headless\\StripeGraphQl\\": ""
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "phpstan/extension-installer": true
         }
     }
 }
