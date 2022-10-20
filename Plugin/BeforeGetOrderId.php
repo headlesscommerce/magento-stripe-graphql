@@ -9,7 +9,7 @@ class BeforeGetOrderId
     /**
      * Force lookup of PaymentIntent by Transaction ID
      */
-    public function beforeExecute(Webhooks $subject, array $object, $includeMultishipping = false)
+    public function beforeGetOrderIdFromObject(Webhooks $subject, array $object, $includeMultishipping = false)
     {
         if (!empty($object['payment_intent'])) {
             $includeMultishipping = true;
