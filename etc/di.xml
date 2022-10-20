@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="StripeIntegration\Payments\Model\PaymentMethod">
+        <plugin name="headless_prevent_capture" type="Headless\StripeGraphQl\Plugin\PreventCapture" />
+    </type>
+    <type name="StripeIntegration\Payments\Observer\WebhooksObserver">
+        <plugin name="headless_delay_webhook" type="Headless\StripeGraphQl\Plugin\DelayWebhook" />
+    </type>
+    <type name="StripeIntegration\Payments\Helper\Webhooks">
+        <plugin name="headless_before_getorderid" type="Headless\StripeGraphQl\Plugin\BeforeGetOrderId" />
+    </type>
+</config>

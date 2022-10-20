@@ -2,7 +2,6 @@
     "name": "headless/magento-stripe-graphql",
     "description": "Extends official Stripe Magento 2 module with additional GraphQL features",
     "type": "magento2-module",
-    "version": "1.0.0",
     "license": [
         "MIT"
     ],
@@ -15,7 +14,7 @@
         }
     ],
     "require": {
-        "stripe/module-payments": "^3.2"
+        "stripe/module-payments": "^3.3"
     },
     "autoload": {
         "files": [
