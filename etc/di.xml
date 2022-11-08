@@ -6,4 +6,7 @@
     <type name="StripeIntegration\Payments\Observer\WebhooksObserver">
         <plugin name="headless_delay_webhook" type="Headless\StripeGraphQl\Plugin\DelayWebhook" />
     </type>
+    <type name="StripeIntegration\Payments\Helper\Webhooks">
+        <plugin name="headless_before_getorderid" type="Headless\StripeGraphQl\Plugin\BeforeGetOrderId" />
+    </type>
 </config>
