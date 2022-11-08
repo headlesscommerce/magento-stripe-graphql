@@ -20,8 +20,9 @@ class BeforeGetOrderId
     public function beforeGetOrderIdFromObject(Webhooks $subject, array $object, $includeMultishipping = false)
     {
         if (!empty($object['description']) && preg_match('/Cart\s([0-9]*)\s/', $object['description'], $matches)) {
-            if ($order = $this->orderCollectionFactory->create()->addFieldToFilter('quote_id', $matches[1])->getFirstItem()) {
-                return $order->getIncrementId();
+            if ($order = $this->salesOrderCollectionFactory->create()->addFieldToFilter('quote_id', $matches[1])->getFirstItem()) {
+                $object['metadata']['Order #'] = $order->getIncrementId();
+                return [$object, $includeMultishipping];
             }
         }
 
