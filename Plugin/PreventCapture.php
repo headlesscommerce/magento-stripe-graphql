@@ -32,11 +32,19 @@ class PreventCapture
         $order = $payment->getOrder();
 
         $paymentIntentModel = $this->paymentIntentFactory->create()->load($order->getQuoteId(), 'quote_id');
-        $paymentIntentModel->setPmId($payment->getAdditionalInformation('token'));
-        $paymentIntentModel->setOrderId($order->getId());
-        $paymentIntentModel->setOrderIncrementId($order->getIncrementId());
-        $paymentIntentModel->setCustomerId($order->getCustomerId());
-        $paymentIntentModel->save();
+        
+        if ($paymentIntentModel->getPiId()) {
+            $paymentIntentModel->setPmId($payment->getAdditionalInformation('token'));
+            $paymentIntentModel->setOrderId($order->getId());
+            $paymentIntentModel->setOrderIncrementId($order->getIncrementId());
+            $paymentIntentModel->setCustomerId($order->getCustomerId());
+            $paymentIntentModel->save();
+
+            // Set the transaction ID on order Invoice so it can be refunded in Admin
+            foreach($order->getInvoiceCollection() as $invoice) {
+                $invoice->setTransactionId($paymentIntentModel->getPiId())->save();
+            }
+        }
 
         return null;
     }
