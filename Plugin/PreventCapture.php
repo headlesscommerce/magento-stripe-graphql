@@ -40,10 +40,7 @@ class PreventCapture
             $paymentIntentModel->setCustomerId($order->getCustomerId());
             $paymentIntentModel->save();
 
-            // Set the transaction ID on order Invoice so it can be refunded in Admin
-            foreach($order->getInvoiceCollection() as $invoice) {
-                $invoice->setTransactionId($paymentIntentModel->getPiId())->save();
-            }
+            $payment->setTransactionId($paymentIntentModel->getPiId());
         }
 
         return null;
